@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/users_home_page_style.css">
+    <title>View Booking</title>
+</head>
+
+<body>
+    <header>
+        <ul class="sidebar">
+            <li><a onclick="hidesidebar()" href="#"><i class="bi bi-x-square-fill"></i></a></li>
+            <li><a href="/home">Home</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="/booking/view">View Booking</a></li>
+            <li><a href="/login">Login</i></a></li>
+        </ul>
+        <ul class="nav-bar">
+            <li><a href="#" class="logo-img">Logo</a></li>
+            <li class="hideOnMobile"><a href="/home">Home</a></li>
+            <li class="hideOnMobile"><a href="#">Contact Us</a></li>
+            <li class="hideOnMobile"><a href="/booking/view">View Booking</a></li>
+            <li class="hideOnMobile"><a href="/login"><i class="bi bi-person-circle"></i></a></li>
+            <li class="menu-btn" onclick="showsidebar()"><a href="#"><i class="bi bi-list"></i></a></li>
+        </ul>
+    </header>
+    <img src="/static/svg/undraw_building_burz.svg" alt="background image" class="background-image">
+
+    <div class="container-fluid"
+        style="margin-top: 10%; background-color: transparent; padding: 1rem; overflow-y: auto; max-height: 79vh; scrollbar-width: none; -ms-overflow-style: none;">
+        <!-- For Webkit browsers -->
+        <style>
+            .container-fluid::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </div>
+
+    <script>
+        function display_booking(booking_list) {
+            booking_list.forEach(booking => {
+                let services = booking.hotel_details.services.join(", ");
+                let temp = `
+            <div class="card mb-3" style="padding: 1rem; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="${booking.hotel_details.hotel_images[0]}" class="img-fluid rounded" alt="Hotel Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color: #a836ff;">${booking.hotel_details.hotel_name}</h5>
+                            <p class="card-text">
+                                <strong>Description:</strong> ${booking.hotel_details.description}<br>
+                                <strong>Address:</strong> ${booking.hotel_details.address}, ${booking.hotel_details.location.city}, ${booking.hotel_details.location.state}, ${booking.hotel_details.location.country}<br>
+                                <strong>Rating:</strong> ${booking.hotel_details.rating}<br>
+                                <strong>Services:</strong> ${services}<br><br>
+
+                                <strong>Booking Details:</strong><br>
+                                <strong>Name:</strong> ${booking.name}<br>
+                                <strong>Email:</strong> ${booking.booking_email}<br>
+                                <strong>Phone:</strong> ${booking.phone_number}<br>
+                                <strong>Room Type:</strong> ${booking.room_type.room_type_name}<br>
+                                <strong>Check-in:</strong> ${booking.checkin}<br>
+                                <strong>Check-out:</strong> ${booking.checkout}<br>
+                                <strong>Adults:</strong> ${booking.adults}, <strong>Children:</strong> ${booking.children}<br>
+                                <strong>No. of Rooms:</strong> ${booking.rooms}<br>
+                                <strong>Created At:</strong> ${booking.created_at}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+                $('.container-fluid').append(temp);
+            });
+        }
+
+
+
+
+        $(document).ready(function () {
+            $.ajax({
+                type: "post",
+                url: "/booking/view",
+                data: "",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response.booking_list);
+                    display_booking(response.booking_list);
+                },
+                error: function (response) {
+                    console.log(response);
+                    alert('22');
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

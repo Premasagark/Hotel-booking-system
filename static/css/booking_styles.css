@@ -1,0 +1,382 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #a836ff;
+  --bg-color2: #e6e1f9;
+  --btn-text: #acacac;
+  --btn-hover: #ff6584;
+}
+
+body,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color2);
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.grid-c {
+  display: grid;
+}
+
+.navbar {
+  background-color: transparent;
+  padding: 10px 0;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  /* background: transparent; */
+}
+
+.navbar-brand {
+  margin-left: 50px;
+  color: var(--bg-color);
+  font-size: 24px;
+  font-weight: bold;
+}
+.navbar-brand:hover {
+  color: var(--btn-hover);
+}
+
+/* Ensure the carousel has a fixed height */
+.carousel {
+  max-width: 500px; /* Adjust width as needed */
+  max-height: 400px;
+  margin: 2vh 5px 5px 10px; /* Center the carousel */
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Makes sure the images fit properly */
+.carousel-inner {
+  height: 100%; /* Set fixed height */
+}
+
+.carousel-item img {
+  width: 100%; /* Full width */
+  height: 300px; /* Full height */
+  object-fit: fill; /* Keeps aspect ratio */
+}
+
+/* Adjusts position and alignment of carousel indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: 15px; /* Adjusts how high the indicators appear */
+  left: 35%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* Adds spacing between indicators */
+}
+
+/* Ensures indicator buttons are visible and sized properly */
+.carousel-indicators button {
+  width: 20px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent white */
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Active indicator styling */
+.carousel-indicators .active {
+  background-color: #fff; /* Full white for active indicator */
+  /* width: 20px;
+  height: 5px; */
+}
+
+/* Aligns and sizes control buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px; /* Make controls smaller */
+  background: transparent;
+  border: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .carousel {
+    height: auto; /* Adjust height for small screens */
+  }
+
+  .carousel-item img {
+    height: auto;
+  }
+}
+
+.details-container {
+  /* width: 100%;  */
+  height: 280px;
+  /* Full width for responsiveness */
+  max-width: 485px; /* Matches carousel width */
+  max-height: 400px; /* Fixed height */
+  margin: 10px 10px 10px 20px; /* Centers the container */
+  padding: 15px;
+  position: relative;
+  border-radius: 15px;
+  background: #f8f9fa; /* Light background */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Aligns items properly */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds subtle shadow */
+}
+
+/* Hotel Name Styling */
+.details-container h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Address & Information */
+.details-container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* Services List in Horizontal Layout */
+.details-container .service {
+  display: flex;
+  flex-wrap: wrap; /* Wrap items in small screens */
+  gap: 10px; /* Space between items */
+  justify-content: center; /* Center the items */
+}
+
+.details-container .service .col::before {
+  content: "•";
+  color: var(--bg-color);
+  margin-right: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .details-container {
+    height: auto; /* Adjusts height for small screens */
+    padding: 10px;
+  }
+
+  .details-container h2 {
+    font-size: 18px;
+  }
+
+  .details-container p {
+    font-size: 14px;
+  }
+
+  .details-container .services span {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+
+
+.form-container {
+  height: 80vh;
+  width: 65%;
+  background-color: #f8f9fa;
+  background-image: url("/static/svg/undraw_responsive_csbt.svg");
+  background-size: 500px 100px;
+  background-repeat: no-repeat;
+  background-position: -135px 360px; /* Center the image */
+
+  /* Positioning */
+  position: absolute;
+  top: 95px;
+  right: 20px;
+  
+  /* Optional Styling */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+}
+
+
+
+
+
+.form-container h1 {
+  font-size: 2.5rem;
+  color: var(--bg-color);
+  text-align: center;
+}
+
+form {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  width: 60%;
+  margin: auto;
+}
+
+.input-group input {
+  width: 100%; /* Make inputs full width */
+}
+
+.checkin-checkout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  width: 50%;
+  margin: auto;
+}
+
+.checkin-c,
+.checkout-c {
+  flex: 1;
+}
+
+.checkin-c label,
+.checkout-c label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.checkin-c input,
+.checkout-c input {
+  width: 100%;
+}
+
+.checkin-checkout label,
+.room-type span {
+  color: #495057;
+}
+
+.checkin-checkout input {
+  color: #ffffff;
+  background: var(--bg-color);
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 0.4px solid #6c757d;
+  outline: none;
+}
+ 
+.checkin-checkout input:hover {
+  border-color: #545b62;
+}
+
+.persons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+
+.btn-group {
+  width: 50%;
+  text-align: center;
+}
+
+.room-count {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.room-type {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+}
+
+.room-selector {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensures full width */
+}
+
+.room-selector > input[type="radio"] {
+  display: none;
+}
+
+.room-selector > label {
+  font-size: 1rem;
+  flex: 1; /* Equal width for all */
+  height: 2.5rem;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Background Colors */
+.room-selector > label:nth-child(1) {
+  background-color: #c236ff;
+  border-radius: 8px 0 0 8px;
+}
+.room-selector > label:nth-child(3) {
+  background-color: var(--bg-color);
+}
+.room-selector > label:nth-child(5) {
+  background-color: #862bcc;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Increase width smoothly on selection */
+.room-selector input[type="radio"]:checked + label {
+  flex: 1.4; /* Slightly increases the selected label */
+}
+
+
+.btn-primary {
+  background-color: #a836ff;
+  width: 100px;
+  height: 3rem;
+  align-self: center;
+  border-color: #6c757d;
+  transition: 0.5s ease;
+  box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.2);}
+
+.btn-primary:hover {
+  border-color: #545b62;
+  background-color: #862bcc;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  
+}
+
+.form-select {
+  color: #ffffff;
+  background-color: var(--bg-color);
+  border: 1px solid #6c757d;
+  border-radius: 4px;
+  width: 50%;
+  height: 5.5vh;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.form-slect:hover {
+  border-color: #545b62;
+}
